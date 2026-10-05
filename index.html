@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QWORM – Worm Thread Measurement Over Wires | Ram-Gear Manufacturing</title>
+<meta name="description" content="Ram-Gear's QWORM: measurement over wires for involute-helicoid worm threads, with pre-plate dimensions and a printable report.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <div class="logo" aria-hidden="true">RG</div>
+    <div>
+      <div class="company">Ram-Gear Manufacturing Inc.</div>
+      <h1>QWORM <span class="sub">Worm Thread Measurement Over Wires</span></h1>
+    </div>
+  </div>
+  <nav class="header-actions">
+    <button type="button" id="btnPrint" class="btn">Print report</button>
+    <button type="button" id="btnShare" class="btn btn-ghost" title="Copy a link containing these inputs">Copy link</button>
+  </nav>
+</header>
+
+<main class="layout">
+  <!-- ============ INPUTS ============ -->
+  <section class="card no-print" id="inputCard" aria-labelledby="inTitle">
+    <div class="card-head">
+      <h2 id="inTitle">Worm data</h2>
+      <label class="units">Units
+        <select id="units">
+          <option value="in">inch</option>
+          <option value="mm">mm</option>
+        </select>
+      </label>
+    </div>
+    <form id="form" novalidate autocomplete="off">
+      <div class="field" data-help="pitch">
+        <label for="P">1. Axial pitch</label>
+        <div class="inp"><input id="P" name="P" inputmode="decimal" required placeholder="e.g. 0.5"><span class="u len"></span></div>
+        <div class="err" id="err-P"></div>
+      </div>
+      <div class="field" data-help="pa">
+        <label for="An">2. Normal pressure angle</label>
+        <div class="inp"><input id="An" name="An" inputmode="decimal" value="20"><span class="u">deg</span></div>
+        <div class="err" id="err-An"></div>
+      </div>
+      <div class="field" data-help="starts">
+        <label for="N">3. Number of starts</label>
+        <div class="inp"><input id="N" name="N" inputmode="numeric" value="1"><span class="u"></span></div>
+        <div class="err" id="err-N"></div>
+      </div>
+      <div class="field" data-help="lead">
+        <label for="lam">4. Worm lead angle <small>(at pitch dia.)</small></label>
+        <div class="inp"><input id="lam" name="lam" inputmode="decimal" placeholder="e.g. 5 or 5 30 15"><span class="u">deg</span></div>
+        <div class="hint" id="hint-lam"></div>
+        <div class="err" id="err-lamDeg"></div>
+      </div>
+      <div class="field" data-help="tt">
+        <label for="ta">5. Axial tooth thickness</label>
+        <div class="inp"><input id="ta" name="ta" inputmode="decimal" placeholder="default: ½ axial pitch"><span class="u len"></span></div>
+        <div class="hint" id="hint-ta"></div>
+        <div class="err" id="err-ta"></div>
+      </div>
+      <div class="field" data-help="wire">
+        <label for="W">6. Wire diameter</label>
+        <div class="inp"><input id="W" name="W" inputmode="decimal" placeholder="default: best-size wire"><span class="u len"></span>
+          <button type="button" class="btn btn-small" id="btnBest" title="Use the approximate best-size wire">Best</button></div>
+        <div class="hint" id="hint-W"></div>
+        <div class="err" id="err-W"></div>
+      </div>
+      <div class="field" data-help="plmin">
+        <label for="platMin">7. Min. plating allowance <small>(if any)</small></label>
+        <div class="inp"><input id="platMin" name="platMin" inputmode="decimal" placeholder="none"><span class="u len"></span></div>
+        <div class="err" id="err-platMin"></div>
+      </div>
+      <div class="field" data-help="plmax">
+        <label for="platMax">8. Max. plating allowance <small>(if any)</small></label>
+        <div class="inp"><input id="platMax" name="platMax" inputmode="decimal" placeholder="none"><span class="u len"></span></div>
+        <div class="err" id="err-platMax"></div>
+      </div>
+
+      <details class="job">
+        <summary>Job information for the printed report <span class="tag tag-new">added</span></summary>
+        <div class="grid2">
+          <label>Customer<input id="jobCustomer"></label>
+          <label>Job / W.O. no.<input id="jobNo"></label>
+          <label>Part / worm no.<input id="jobPart"></label>
+          <label>Prepared by<input id="jobBy"></label>
+        </div>
+        <label>Notes<textarea id="jobNotes" rows="2"></textarea></label>
+      </details>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary">Calculate</button>
+        <button type="button" class="btn btn-ghost" id="btnReset">Clear</button>
+        <button type="button" class="btn btn-ghost" id="btnExample">Load example</button>
+      </div>
+    </form>
+
+    <aside class="notes" id="notes" aria-live="polite">
+      <h3>Notes</h3>
+      <div id="notesBody"></div>
+    </aside>
+  </section>
+
+  <!-- ============ RESULTS / REPORT ============ -->
+  <section class="card report" id="report" aria-labelledby="repTitle">
+    <div class="print-only print-head">
+      <div class="print-brand">
+        <div class="logo">RG</div>
+        <div><div class="company">Ram-Gear Manufacturing Inc.</div>
+          <div class="ptitle">QWORM – Worm Thread Data (Measurement Over Wires)</div></div>
+      </div>
+      <table class="jobtable" id="jobTable"></table>
+    </div>
+    <div class="card-head">
+      <h2 id="repTitle">Worm data – results</h2>
+      <span class="stamp" id="stamp"></span>
+    </div>
+    <div id="messages"></div>
+    <table class="results" id="results">
+      <thead><tr><th>#</th><th>Item</th><th class="num">Value</th></tr></thead>
+      <tbody id="resBody"><tr><td colspan="3" class="empty">Enter the worm data and press Calculate.</td></tr></tbody>
+    </table>
+
+    <h3 class="sec">Additional data <span class="tag tag-new">not shown by original QWORM</span></h3>
+    <table class="results small" id="extra">
+      <tbody id="extraBody"></tbody>
+    </table>
+
+    <p class="method">
+      Method: Buckingham exact involute-helicoid formula (helical-gear wire equation applied to the worm thread),
+      as used by the original QWORM. Thinning from tooth thickness below ½ pitch and from plating is applied by
+      reducing the pitch diameter by backlash × cot(axial pressure angle). Results checked against outputs of the original
+      QWORM.EXE to its displayed precision (4 decimals). Assumes an involute-helicoid (ZI) worm and three wires.
+    </p>
+    <p class="print-only sig">Checked by: ______________________ &nbsp;&nbsp; Date: ______________</p>
+  </section>
+
+  <!-- ============ TOOLS & DOCS ============ -->
+  <section class="card no-print" id="tools">
+    <h2>Conversion helpers</h2>
+    <p class="muted">The original program sent you to its built-in RPN calculator for these. Results can be sent straight to the form.</p>
+    <div class="helpers">
+      <div class="helper">
+        <h4>Axial pitch from threads per inch</h4>
+        <label>TPI <input id="hTPI" inputmode="decimal"></label>
+        <output id="oTPI"></output><button type="button" class="btn btn-small" data-send="P" data-from="oTPI">Use</button>
+      </div>
+      <div class="helper">
+        <h4>Axial pitch from lead &amp; starts</h4>
+        <label>Lead <input id="hLead" inputmode="decimal"></label>
+        <label>Starts <input id="hLeadN" inputmode="numeric" value="1"></label>
+        <output id="oLead"></output><button type="button" class="btn btn-small" data-send="P" data-from="oLead">Use</button>
+      </div>
+      <div class="helper">
+        <h4>Axial pitch from module (metric)</h4>
+        <label>Axial module <input id="hMod" inputmode="decimal"></label>
+        <output id="oMod"></output><button type="button" class="btn btn-small" data-send="P" data-from="oMod">Use</button>
+      </div>
+      <div class="helper">
+        <h4>Lead angle from pitch diameter</h4>
+        <label>Pitch dia. <input id="hPD" inputmode="decimal"></label>
+        <span class="muted">uses pitch &amp; starts from the form</span>
+        <output id="oPD"></output><button type="button" class="btn btn-small" data-send="lam" data-from="oPD">Use</button>
+      </div>
+      <div class="helper">
+        <h4>Normal PA from axial PA</h4>
+        <label>Axial PA (deg) <input id="hAPA" inputmode="decimal"></label>
+        <span class="muted">uses lead angle from the form</span>
+        <output id="oAPA"></output><button type="button" class="btn btn-small" data-send="An" data-from="oAPA">Use</button>
+      </div>
+      <div class="helper">
+        <h4>Axial thickness from normal thickness</h4>
+        <label>Normal thickness <input id="hTN" inputmode="decimal"></label>
+        <span class="muted">uses lead angle from the form</span>
+        <output id="oTN"></output><button type="button" class="btn btn-small" data-send="ta" data-from="oTN">Use</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card no-print docs" id="docs">
+    <h2>About this program</h2>
+    <p>This program calculates the measurement over wires of worm threads for a given axial tooth thickness, and the
+      pre-plate measurement over wires for a minimum and maximum plating allowance. It rebuilds, for the browser,
+      the DOS program <strong>QWORM</strong> (“Quick Worm”, © 1995 James R. Shaneyfelt) that Ram-Gear has used.</p>
+    <h3>Formulas</h3>
+    <ul class="formulas">
+      <li>Lead <code>L = N × P</code>; threads per inch <code>= N ÷ L</code>; axial pitch <code>P = 1 ÷ TPI</code> (single start)</li>
+      <li>Pitch diameter <code>D = L ÷ (π × tan λ)</code></li>
+      <li>Axial pressure angle <code>tan φa = tan φn ÷ cos λ</code></li>
+      <li>Best-size wire <code>W = (0.5 × P) × cos λ ÷ cos φn</code></li>
+      <li>Contributing backlash <code>B = P/2 − axial tooth thickness</code></li>
+      <li>Plating → backlash <code>Bp = 2 × plating ÷ (cos φn × cos λ)</code></li>
+      <li>Reduced pitch diameter <code>D′ = D − (B + Bp) × cot φa</code>, lead angle re-evaluated at <code>D′</code>: <code>tan λ′ = L ÷ (π D′)</code></li>
+      <li>Helix angle <code>ψ = 90° − λ′</code>; transverse PA <code>tan φt = tan φn ÷ cos ψ</code>; base diameter <code>Db = D′ cos φt</code>;
+        base helix <code>sin ψb = sin ψ × cos φn</code></li>
+      <li><code>inv φw = π/(2N) + inv φt + W ÷ (Db cos ψb) − π/N</code> &nbsp; (<code>inv x = tan x − x</code>)</li>
+      <li>Measurement over wires <code>M = Db ÷ cos φw + W</code></li>
+    </ul>
+    <p class="muted">See <code>notes.md</code> in the project for where each formula came from and how it was checked against the original.</p>
+    <h3>Keyboard</h3>
+    <p class="muted">Enter moves to the next field (as in the original); Enter on the last field calculates. Ctrl+P prints the report.</p>
+  </section>
+</main>
+
+<footer class="site-footer no-print">
+  <span>Ram-Gear Manufacturing Inc. · QWORM web edition v<span id="ver"></span></span>
+  <span>Always confirm critical dimensions against an independent check before cutting.</span>
+</footer>
+
+<script src="js/qworm-engine.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
