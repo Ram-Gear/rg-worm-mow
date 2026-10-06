@@ -111,3 +111,4 @@ table.results{width:100%;border-collapse:collapse}
   .print-brand{margin-bottom:.3rem}
   .msg{border:1px solid #999;background:#fff;color:#000}
 }
+.attrib{font-size:.88rem;color:var(--muted);border-left:3px solid var(--accent);padding:.3rem .7rem;background:#fbf7ee}

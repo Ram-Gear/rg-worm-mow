@@ -1,15 +1,20 @@
-# QWORM – Worm Thread Measurement Over Wires (Ram-Gear web edition)
+# RG Worm MOW – Worm Thread Measurement Over Wires
 
-A browser rebuild of **QWORM** ("Quick Worm", © 1995 James R. Shaneyfelt), the DOS program
-Ram-Gear Manufacturing Inc. uses to calculate the **measurement over wires (M.O.W.)** of
-involute-helicoid worm threads, including **pre-plate M.O.W.** for a min./max. plating allowance.
+**RG Worm MOW** is a browser tool from **Ram-Gear Manufacturing Inc.** It calculates the
+**measurement over wires (M.O.W.)** of involute-helicoid worm threads, including **pre-plate M.O.W.** for a
+min./max. plating allowance.
+
+> **Attribution:** RG Worm MOW reproduces the measurement-over-wires method of the DOS program
+> Quick Worm (QWORM, © 1995 James R. Shaneyfelt), which Ram-Gear has used, and it was checked against that
+> program's outputs. It is an independent re-implementation. It contains no code from the original and is not
+> affiliated with or endorsed by its author.
 
 It is a static site: plain HTML/CSS/JavaScript, no build step, no server code, no external
 libraries or network calls. Open `index.html` directly or host it on GitHub Pages as-is.
 
 ## What it does
 
-Inputs, in the same order as the original:
+Inputs, in the same order as the original DOS program:
 
 1. Axial pitch
 2. Normal pressure angle (default 20°)
@@ -20,14 +25,14 @@ Inputs, in the same order as the original:
 7. Min. plating allowance (optional)
 8. Max. plating allowance (optional; defaults to min.)
 
-The report (item numbers follow the original's printed report): axial pitch, starts, lead, lead angle,
+The report (item numbers follow the original program's printed report): axial pitch, starts, lead, lead angle,
 normal and axial pressure angle, pitch diameter, axial tooth thickness, contributing backlash,
 **measurement over wires**, **pre-plate measurement over wires (min./max.)**, wire diameter used, and
 best-size wire. A second table ("Additional data") shows values the original did not display
 (base diameter, base lead angle, wire-center diameter, and so on). It is labelled as such.
 
 Other features: input validation, context notes for each field (the original had these too), conversion helpers
-(TPI, lead, module, PD to lead angle, axial to normal PA, normal to axial thickness) in place of the original's RPN calculator,
+(TPI, lead, module, PD to lead angle, axial to normal PA, normal to axial thickness) in place of the original program's RPN calculator,
 optional job information, a printable one-page report (**Print report** or Ctrl+P), a shareable link with the
 inputs in the URL, and the last inputs remembered in the browser (localStorage).
 
@@ -36,7 +41,7 @@ Units: the calculation has no units. The inch/mm selector changes only the label
 ## Accuracy against the original
 
 The formulas (see the "About" section on the page and `../notes.md`) were confirmed by running the
-original `QWORM.EXE` in DOSBox. Its displayed outputs for 23 input sets (1–4 starts, 14.5–30° PA,
+original Quick Worm program (`QWORM.EXE`) in DOSBox. Its displayed outputs for 23 input sets (1–4 starts, 14.5–30° PA,
 2–20° lead angle, thick/thin teeth, plating) were recorded in `tests/reference-cases.json`.
 
 ```
@@ -52,9 +57,9 @@ rounds to 2.1378 where the original shows 2.1377.
 ```
 index.html               page markup
 css/style.css            screen + print styles
-js/qworm-engine.js       calculation engine (pure functions, also loadable in Node)
+js/rgworm-engine.js      calculation engine (pure functions, also loadable in Node)
 js/app.js                user interface
-tests/reference-cases.json  outputs recorded from the original QWORM.EXE
+tests/reference-cases.json  outputs recorded from the original program (QWORM.EXE)
 tests/run-tests.js       engine-vs-original regression test (Node)
 ```
 
@@ -62,15 +67,15 @@ tests/run-tests.js       engine-vs-original regression test (Node)
 
 > Nothing has been pushed or published. These are the steps for when Gary decides to go ahead.
 
-1. Create a repository under the **Ram-Gear** GitHub account (for example `qworm`).
+1. Create a repository under the **Ram-Gear** GitHub account. Suggested name: **`rg-worm-mow`**.
 2. From this folder:
    ```
-   git remote add origin https://github.com/Ram-Gear/qworm.git
+   git remote add origin https://github.com/Ram-Gear/rg-worm-mow.git
    git push -u origin main
    ```
 3. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**,
    then choose branch `main`, folder `/ (root)`, and **Save**.
-4. After a minute the site will be at `https://ram-gear.github.io/qworm/`.
+4. After a minute the site will be at `https://ram-gear.github.io/rg-worm-mow/`.
 
 All paths are relative, so the site also works from a sub-folder, from a custom domain, or from a local file.
 Note that a GitHub Pages site is **public** even if the repository is private (private Pages needs GitHub Enterprise).

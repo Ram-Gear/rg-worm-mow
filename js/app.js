@@ -1,11 +1,12 @@
-/* QWORM web UI – Ram-Gear Manufacturing */
+/* RG Worm MOW web UI – Ram-Gear Manufacturing Inc. */
 (function () {
   'use strict';
-  var Q = window.QWorm;
+  var Q = window.RGWormMOW;
   var $ = function (id) { return document.getElementById(id); };
   var FIELDS = ['P', 'An', 'N', 'lam', 'ta', 'W', 'platMin', 'platMax'];
   var JOB = ['jobCustomer', 'jobNo', 'jobPart', 'jobBy', 'jobNotes'];
-  var STORE = 'ramgear.qworm.v1';
+  var STORE = 'ramgear.rgwormmow.v1';
+  var OLD_STORE = 'ramgear.qworm.v1'; // pre-rename key, read once for continuity
   var last = null;
 
   /* ---------- context notes (paraphrasing the original's help screens) ---------- */
@@ -185,7 +186,7 @@
   /* ---------- wiring ---------- */
   function init() {
     $('ver').textContent = Q.version;
-    setState(stateFromHash() || (function () { try { return JSON.parse(localStorage.getItem(STORE)); } catch (e) { return null; } })());
+    setState(stateFromHash() || (function () { try { return JSON.parse(localStorage.getItem(STORE) || localStorage.getItem(OLD_STORE)); } catch (e) { return null; } })());
     updateUnits(); updateHints(); showNote('pitch');
 
     $('form').addEventListener('submit', function (ev) { ev.preventDefault(); calculate(); });

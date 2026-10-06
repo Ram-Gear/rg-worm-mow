@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QWORM – Worm Thread Measurement Over Wires | Ram-Gear Manufacturing</title>
-<meta name="description" content="Ram-Gear's QWORM: measurement over wires for involute-helicoid worm threads, with pre-plate dimensions and a printable report.">
+<title>RG Worm MOW – Worm Thread Measurement Over Wires | Ram-Gear Manufacturing</title>
+<meta name="description" content="RG Worm MOW by Ram-Gear Manufacturing: measurement over wires for involute-helicoid worm threads, with pre-plate dimensions and a printable report.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <div class="logo" aria-hidden="true">RG</div>
     <div>
       <div class="company">Ram-Gear Manufacturing Inc.</div>
-      <h1>QWORM <span class="sub">Worm Thread Measurement Over Wires</span></h1>
+      <h1>RG Worm MOW <span class="sub">Worm Thread Measurement Over Wires</span></h1>
     </div>
   </div>
   <nav class="header-actions">
@@ -110,7 +110,7 @@
       <div class="print-brand">
         <div class="logo">RG</div>
         <div><div class="company">Ram-Gear Manufacturing Inc.</div>
-          <div class="ptitle">QWORM – Worm Thread Data (Measurement Over Wires)</div></div>
+          <div class="ptitle">RG Worm MOW – Worm Thread Data (Measurement Over Wires)</div></div>
       </div>
       <table class="jobtable" id="jobTable"></table>
     </div>
@@ -124,16 +124,16 @@
       <tbody id="resBody"><tr><td colspan="3" class="empty">Enter the worm data and press Calculate.</td></tr></tbody>
     </table>
 
-    <h3 class="sec">Additional data <span class="tag tag-new">not shown by original QWORM</span></h3>
+    <h3 class="sec">Additional data <span class="tag tag-new">not shown by the original DOS program</span></h3>
     <table class="results small" id="extra">
       <tbody id="extraBody"></tbody>
     </table>
 
     <p class="method">
       Method: Buckingham exact involute-helicoid formula (helical-gear wire equation applied to the worm thread),
-      as used by the original QWORM. Thinning from tooth thickness below ½ pitch and from plating is applied by
-      reducing the pitch diameter by backlash × cot(axial pressure angle). Results checked against outputs of the original
-      QWORM.EXE to its displayed precision (4 decimals). Assumes an involute-helicoid (ZI) worm and three wires.
+      as used by the original DOS program it reproduces. Thinning from tooth thickness below ½ pitch and from plating is applied by
+      reducing the pitch diameter by backlash × cot(axial pressure angle). Results checked against outputs of that
+      program to its displayed precision (4 decimals). Assumes an involute-helicoid (ZI) worm and three wires.
     </p>
     <p class="print-only sig">Checked by: ______________________ &nbsp;&nbsp; Date: ______________</p>
   </section>
@@ -141,7 +141,7 @@
   <!-- ============ TOOLS & DOCS ============ -->
   <section class="card no-print" id="tools">
     <h2>Conversion helpers</h2>
-    <p class="muted">The original program sent you to its built-in RPN calculator for these. Results can be sent straight to the form.</p>
+    <p class="muted">The original DOS program sent you to its built-in RPN calculator for these. Results can be sent straight to the form.</p>
     <div class="helpers">
       <div class="helper">
         <h4>Axial pitch from threads per inch</h4>
@@ -181,10 +181,13 @@
   </section>
 
   <section class="card no-print docs" id="docs">
-    <h2>About this program</h2>
-    <p>This program calculates the measurement over wires of worm threads for a given axial tooth thickness, and the
-      pre-plate measurement over wires for a minimum and maximum plating allowance. It rebuilds, for the browser,
-      the DOS program <strong>QWORM</strong> (“Quick Worm”, © 1995 James R. Shaneyfelt) that Ram-Gear has used.</p>
+    <h2>About RG Worm MOW</h2>
+    <p><strong>RG Worm MOW</strong> calculates the measurement over wires of worm threads for a given axial tooth thickness, and the
+      pre-plate measurement over wires for a minimum and maximum plating allowance.</p>
+    <p class="attrib"><strong>Attribution:</strong> RG Worm MOW reproduces the measurement-over-wires method of the DOS program
+      Quick Worm (QWORM, © 1995 James R. Shaneyfelt), which Ram-Gear has used, and its results were checked against that program’s
+      outputs. It is an independent re-implementation by Ram-Gear Manufacturing Inc. It contains no code from the original and is
+      not affiliated with or endorsed by its author.</p>
     <h3>Formulas</h3>
     <ul class="formulas">
       <li>Lead <code>L = N × P</code>; threads per inch <code>= N ÷ L</code>; axial pitch <code>P = 1 ÷ TPI</code> (single start)</li>
@@ -206,11 +209,11 @@
 </main>
 
 <footer class="site-footer no-print">
-  <span>Ram-Gear Manufacturing Inc. · QWORM web edition v<span id="ver"></span></span>
+  <span>Ram-Gear Manufacturing Inc. · RG Worm MOW v<span id="ver"></span></span>
   <span>Always confirm critical dimensions against an independent check before cutting.</span>
 </footer>
 
-<script src="js/qworm-engine.js"></script>
+<script src="js/rgworm-engine.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 /*
- * QWORM calculation engine (Ram-Gear rebuild)
- * --------------------------------------------
+ * RG Worm MOW calculation engine – Ram-Gear Manufacturing Inc.
+ * --------------------------------------------------------------
  * Measurement over wires (M.O.W.) for involute-helicoid worm threads,
- * after the original DOS program QWORM ("Quick Worm", (C) 1995 James R. Shaneyfelt).
+ * reproducing the method of the DOS program Quick Worm (QWORM, (C) 1995 James R. Shaneyfelt).
+ * Independent re-implementation; no code from the original.
  *
  * Provenance of every formula is documented in ../../notes.md. In short:
  *  - The ORIGINAL's built-in help/documentation text (recovered from QWORM.EXE) states:
@@ -16,7 +17,7 @@
  *    under DOSBox and matching 24 recorded outputs to the original's displayed 4 decimals.
  * No source code or disassembly of the original was available; nothing here is decompiled.
  *
- * Works in the browser (window.QWorm) and in Node (module.exports).
+ * Works in the browser (window.RGWormMOW) and in Node (module.exports).
  */
 (function (root) {
   'use strict';
@@ -66,7 +67,7 @@
   }
 
   /**
-   * Main QWORM calculation.
+   * Main RG Worm MOW calculation.
    * @param {object} p inputs:
    *   P      axial pitch (length)
    *   An     normal pressure angle (deg)
@@ -163,7 +164,7 @@
       var bw = 0.5 * P * Math.cos(lam) / Math.cos(An);
       if (p.W !== '' && p.W != null && (+p.W < 0.75 * bw || +p.W > 1.25 * bw)) w.push('Wire diameter differs from the best-size wire (' + bw.toFixed(5) + ') by more than 25% - make sure the wire contacts the flanks, not the root or crest.');
       var pm = Math.max(+(p.platMin || 0), +(p.platMax || 0));
-      if (pm >= 0.03 * P) w.push('Plating allowance is large relative to the pitch. The original QWORM rejected such entries (observed: 0.02 rejected at 0.5 axial pitch; exact limit unknown).');
+      if (pm >= 0.03 * P) w.push('Plating allowance is large relative to the pitch. The original DOS program rejected such entries (observed: 0.02 rejected at 0.5 axial pitch; exact limit unknown).');
     }
     return { errors: e, warnings: w };
   }
@@ -207,5 +208,5 @@
 
   var api = { compute: compute, validate: validate, toDM: toDM, toDMS: toDMS, parseAngle: parseAngle, helpers: helpers, inv: inv, invInverse: invInverse, version: '1.0.0' };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
-  root.QWorm = api;
+  root.RGWormMOW = api;
 })(typeof window !== 'undefined' ? window : globalThis);
