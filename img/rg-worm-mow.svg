@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>RG Worm MOW</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2E7386"/>
+      <stop offset="1" stop-color="#245E6E"/>
+    </linearGradient>
+  </defs>
+  <!-- tile: identical on every icon -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- worm axial section -->
+  <path d="M80 230L93 230L109 186L135 186L151 230L177 230L193 186L219 186L235 230L261 230L277 186L303 186L319 230L332 230L332 326L319 326L303 282L277 282L261 326L235 326L219 282L193 282L177 326L151 326L135 282L109 282L93 326L80 326Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+  <!-- three measuring wires, tangent to the thread flanks -->
+  <circle cx="164" cy="189.7" r="26" fill="#9FD3E1" stroke="url(#bg)" stroke-width="6" paint-order="stroke"/>
+  <circle cx="248" cy="189.7" r="26" fill="#9FD3E1" stroke="url(#bg)" stroke-width="6" paint-order="stroke"/>
+  <circle cx="206" cy="322.3" r="26" fill="#9FD3E1" stroke="url(#bg)" stroke-width="6" paint-order="stroke"/>
+  <!-- micrometer anvils + M dimension -->
+  <rect x="120" y="141.7" width="172" height="22" rx="8" fill="#FFFFFF"/>
+  <rect x="154" y="348.3" width="104" height="22" rx="8" fill="#FFFFFF"/>
+  <path d="M410 177.7V334.3" stroke="#9FD3E1" stroke-width="22"/>
+  <path d="M410 141.7l-26 44h52zM410 370.3l-26 -44h52z" fill="#9FD3E1" stroke="#9FD3E1" stroke-width="8" stroke-linejoin="round"/>
+</svg>

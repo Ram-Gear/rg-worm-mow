@@ -114,3 +114,4 @@ table.results{width:100%;border-collapse:collapse}
 .attrib{font-size:.88rem;color:var(--muted);border-left:3px solid var(--accent);padding:.3rem .7rem;background:#fbf7ee}
 
 a.btn{text-decoration:none;display:inline-block}
+.app-icon{width:46px;height:46px;border-radius:10px;display:block;flex:none}
