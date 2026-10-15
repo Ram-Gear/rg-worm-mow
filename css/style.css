@@ -1,5 +1,5 @@
 :root{
-  --ink:#1d232a; --muted:#5b6672; --line:#d5dbe1; --bg:#eef1f4; --card:#fff;
+  --ink:#1d232a; --muted:#5b6672; --line:#d5dbe1; --bg:#EAF7EA; --card:#fff;
   --brand:#8a1c1c; --brand-dark:#5e1010; --steel:#2f3d4c; --accent:#c8932c;
   --ok:#256b3a; --warn:#8a5a00; --err:#a11d1d;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
