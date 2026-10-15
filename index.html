@@ -22,7 +22,7 @@
   <nav class="header-actions">
     <button type="button" id="btnPrint" class="btn">Print report</button>
     <button type="button" id="btnShare" class="btn btn-ghost" title="Copy a link containing these inputs">Copy link</button>
-    <a class="btn btn-ghost" id="btnHelp" href="https://grok.com/?q=I%27m%20using%20Ram-Gear%27s%20RG%20Worm%20MOW%2C%20a%20browser%20rebuild%20of%20the%20old%20DOS%20program%20QWORM%20%28Quick%20Worm%29%20that%20calculates%20the%20three-wire%20measurement%20over%20wires%20for%20worm%20threads%20from%20axial%20pitch%2C%20pressure%20angle%2C%20starts%2C%20lead%20angle%2C%20tooth%20thickness%2C%20wire%20size%20and%20plating%20allowance.%20Can%20you%20give%20me%20pointers%20on%20how%20to%20use%20it%3F" target="_blank" rel="noopener" title="Ask Grok how to use RG Worm MOW (opens in a new tab)">Help</a>
+    <a class="btn btn-ghost" id="btnHelp" href="https://grok.com/?q=I%27m%20using%20Ram-Gear%27s%20RG%20Worm%20MOW%2C%20a%20browser%20rebuild%20of%20the%20old%20DOS%20program%20QWORM%20%28Quick%20Worm%29%20that%20calculates%20the%20three-wire%20measurement%20over%20wires%20for%20worm%20threads.%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first%2C%20then%20give%20me%20pointers%20on%20how%20to%20use%20it." target="_blank" rel="noopener" title="Ask Grok how to use RG Worm MOW (opens in a new tab)">Help</a>
   </nav>
 </header>
 
@@ -207,6 +207,7 @@
       <li>Measurement over wires <code>M = Db ÷ cos φw + W</code></li>
     </ul>
     <p class="muted">See <code>notes.md</code> in the project for where each formula came from and how it was checked against the original.</p>
+    <p class="helplink"><a href="help.html">Help guide</a>: how to use each field, worked examples, printing, sharing and troubleshooting.</p>
     <h3>Keyboard</h3>
     <p class="muted">Enter moves to the next field (as in the original); Enter on the last field calculates. Ctrl+P prints the report.</p>
   </section>
@@ -214,7 +215,7 @@
 
 <footer class="site-footer no-print">
   <span>Ram-Gear Manufacturing Inc. · RG Worm MOW v<span id="ver"></span></span>
-  <span>Always confirm critical dimensions against an independent check before cutting.</span>
+  <span><a href="help.html">Help guide</a> · Always confirm critical dimensions against an independent check before cutting.</span>
 </footer>
 
 <script src="js/rgworm-engine.js"></script>

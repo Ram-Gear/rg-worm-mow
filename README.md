@@ -38,6 +38,19 @@ inputs in the URL, and the last inputs remembered in the browser (localStorage).
 
 Units: the calculation has no units. The inch/mm selector changes only the labels.
 
+## Help guide
+
+`help.html` is a plain, public help page in the same style. It covers:
+- what the app does
+- every input field, results items 1–13, Additional data, the conversion helpers and the buttons
+- step-by-step tasks, including the worked 5 DP / 14.5° / 2.000" PD example (2.4035" over 0.3229" best-size wires)
+- troubleshooting, using the app's actual error and warning messages
+
+It also has **Try it** practice boxes, which check answers with the app's own engine (`js/help.js` + `js/rgworm-engine.js`) entirely in the browser, and a "New numbers" randomizer.
+Each section has an **Ask Grok about this** link. These are static, fully URL-encoded grok.com questions that tell Grok to read the help page first and contain no user data.
+It is linked from the app's About section and footer ("Help guide"). The app's header **Help** button still opens Grok; its question now points Grok to this page first.
+The page has no trackers, external scripts or API keys.
+
 ## Accuracy against the original
 
 The formulas (see the "About" section on the page and `../notes.md`) were confirmed by running the
@@ -56,6 +69,9 @@ rounds to 2.1378 where the original shows 2.1377.
 
 ```
 index.html               page markup
+help.html                help guide with practice boxes
+js/help.js               practice-box logic for help.html
+img/                     app icon and favicons
 css/style.css            screen + print styles
 js/rgworm-engine.js      calculation engine (pure functions, also loadable in Node)
 js/app.js                user interface

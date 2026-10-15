@@ -115,3 +115,25 @@ table.results{width:100%;border-collapse:collapse}
 
 a.btn{text-decoration:none;display:inline-block}
 .app-icon{width:46px;height:46px;border-radius:10px;display:block;flex:none}
+
+/* ---- help guide ---- */
+.help-layout{display:flex;flex-direction:column;gap:1.1rem;padding:1.1rem 1.4rem;max-width:1000px;margin:0 auto}
+.helppage .card-head{gap:1rem;flex-wrap:wrap}
+.helppage h3{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin:1.1rem 0 .4rem}
+.askgrok{font-size:.8rem;font-weight:400;white-space:nowrap;color:#2c4f7c}
+.toc ol{margin:.4rem 0 .4rem 1.2rem;padding:0}
+.helptable td:first-child{white-space:nowrap;font-weight:600}
+.helptable td:nth-child(2){white-space:nowrap;color:var(--muted)}
+.items li,.step li{margin:.2rem 0}
+.step{border-left:3px solid var(--line);padding-left:.8rem;margin:.6rem 0}
+.helppage code{font-family:var(--mono);background:#f3f5f7;padding:.05rem .25rem;border-radius:3px}
+.tryit{border:1px solid var(--line);border-radius:6px;padding:.6rem .8rem;margin:.7rem 0;background:#fcfdfc}
+.tryhead{margin-bottom:.2rem}
+.tq{margin:.3rem 0 .5rem}
+.trow{display:flex;gap:.45rem;align-items:center;flex-wrap:wrap}
+.trow input{width:9rem;font-family:var(--mono)}
+.tresult{margin-top:.5rem;font-size:.9rem;border-radius:5px}
+.tresult:empty{display:none}
+.tresult.good{background:#eaf6ee;border:1px solid #a9d6b5;color:var(--ok);padding:.45rem .7rem}
+.tresult.bad{background:#fdecec;border:1px solid #f0b4b4;color:var(--err);padding:.45rem .7rem}
+.helplink a,.site-footer a{color:var(--brand)}

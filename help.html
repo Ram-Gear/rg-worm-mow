@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help guide – RG Worm MOW | Ram-Gear Manufacturing</title>
+<meta name="description" content="How to use RG Worm MOW: three-wire measurement over wires and pre-plate measurement over wires for worm threads.">
+<link rel="icon" type="image/svg+xml" href="img/rg-worm-mow.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="img/rg-worm-mow-64.png">
+<link rel="apple-touch-icon" href="img/rg-worm-mow-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="helppage">
+<header class="site-header">
+  <div class="brand">
+    <img class="app-icon" src="img/rg-worm-mow.svg" width="46" height="46" alt="RG Worm MOW icon">
+    <div>
+      <div class="company">Ram-Gear Manufacturing Inc.</div>
+      <h1>RG Worm MOW <span class="sub">Help guide</span></h1>
+    </div>
+  </div>
+  <nav class="header-actions">
+    <a class="btn" href="index.html">Open the app</a>
+    <a class="btn btn-ghost" id="btnHelp" href="https://grok.com/?q=I%27m%20using%20Ram-Gear%27s%20RG%20Worm%20MOW%2C%20a%20browser%20rebuild%20of%20the%20old%20DOS%20program%20QWORM%20%28Quick%20Worm%29%20that%20calculates%20the%20three-wire%20measurement%20over%20wires%20for%20worm%20threads.%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first%2C%20then%20give%20me%20pointers%20on%20how%20to%20use%20it." target="_blank" rel="noopener" title="Ask Grok how to use RG Worm MOW (opens in a new tab)">Ask Grok</a>
+  </nav>
+</header>
+
+<main class="help-layout">
+<nav class="card toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#what">What the app does</a></li>
+    <li><a href="#screen">The screen, part by part</a></li>
+    <li><a href="#tasks">Common tasks, step by step</a></li>
+    <li><a href="#practice">Practice: try it yourself</a></li>
+    <li><a href="#trouble">Troubleshooting</a></li>
+  </ol>
+  <p class="muted">Practice boxes run entirely in your browser using the app's own calculation engine. "Ask Grok" links open grok.com in a new tab with a fixed question; nothing you type on this page is included.</p>
+</nav>
+
+<section class="card" id="what">
+  <div class="card-head"><h2>1. What the app does</h2><a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20does%20the%20app%20calculate%2C%20and%20when%20would%20a%20gearbox%20repair%20shop%20use%20three-wire%20measurement%20over%20wires%20for%20a%20worm%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></div>
+  <p><strong>RG Worm MOW</strong> calculates the <strong>three-wire measurement over wires (M.O.W.)</strong> of a worm thread
+    from the worm's axial pitch, normal pressure angle, number of starts, lead angle, axial tooth thickness and wire size.
+    If the worm is to be plated, it also gives the <strong>pre-plate measurement over wires</strong>: the size to machine to
+    before plating so that the plated worm comes out right. Enter a min. and a max. plating allowance and you get both limits.</p>
+  <p>The calculation is the <strong>Buckingham exact involute-helicoid formula</strong> (Machinery's Handbook). It treats the worm as a helical gear
+    with as many teeth as the worm has starts and applies the helical-gear wire equation. A tooth thinner than half the pitch, and plating, are handled
+    by reducing the pitch diameter by backlash × cot(axial pressure angle). The formulas are listed in the About section of the app.</p>
+  <p class="attrib"><strong>Credit:</strong> RG Worm MOW reproduces the measurement-over-wires method of the DOS program
+    Quick Worm (QWORM, © 1995 James R. Shaneyfelt), which Ram-Gear has used, and its results were checked against that program's outputs.
+    It is an independent re-implementation by Ram-Gear Manufacturing Inc. It contains no code from the original and is not affiliated with or endorsed by its author.</p>
+  <p class="muted">It assumes an <strong>involute-helicoid (ZI)</strong> worm measured with three equal wires. It does not do worm-gear design, strength or ratio calculations.</p>
+</section>
+
+<section class="card" id="screen">
+  <div class="card-head"><h2>2. The screen, part by part</h2><a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20can%20you%20walk%20me%20through%20the%20parts%20of%20the%20screen%3A%20the%20input%20fields%2C%20the%20results%20table%2C%20additional%20data%2C%20and%20the%20conversion%20helpers%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></div>
+
+  <h3>Worm data (inputs) <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20does%20each%20of%20the%20eight%20input%20fields%20mean%2C%20and%20what%20units%20do%20they%20use%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>Enter the fields in order. The <strong>Units</strong> box (inch / mm) only changes the labels; the math works the same in either unit,
+    so enter every length in the unit you picked. Angles are always degrees.</p>
+  <table class="results helptable">
+    <thead><tr><th>Field</th><th>Units</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>1. Axial pitch</td><td>in / mm</td><td>Distance from one thread to the next along the worm axis (axial circular pitch). For a DP worm, P = π ÷ DP. For TPI, P = 1 ÷ TPI. For metric, P = π × module. Required.</td></tr>
+      <tr><td>2. Normal pressure angle</td><td>deg</td><td>Half the included thread angle, measured in the normal plane. Default 20. Must be between 0 and 45.</td></tr>
+      <tr><td>3. Number of starts</td><td>–</td><td>Number of thread starts (whole number, default 1).</td></tr>
+      <tr><td>4. Worm lead angle</td><td>deg</td><td>Lead angle at the pitch diameter. Type decimal degrees (5.71059) or degrees minutes seconds separated by spaces (5 42 38). The value is echoed under the box in both forms. Must be between 0 and 60. Required.</td></tr>
+      <tr><td>5. Axial tooth thickness</td><td>in / mm</td><td>Thread thickness at the pitch diameter, measured along the axis. Leave blank for half the axial pitch (zero backlash); the hint shows "will use …". Must be less than the axial pitch.</td></tr>
+      <tr><td>6. Wire diameter</td><td>in / mm</td><td>Diameter of the three measuring wires. The hint shows the approximate best-size wire. Leave blank to use it, or press <strong>Best</strong> to copy it into the box.</td></tr>
+      <tr><td>7. Min. plating allowance</td><td>in / mm</td><td>Plating thickness per surface, for the pre-plate measurement. Leave blank if the part is not plated.</td></tr>
+      <tr><td>8. Max. plating allowance</td><td>in / mm</td><td>Upper plating limit. If blank, the min. value is used. It must not be less than the min., and it needs a min. to be entered.</td></tr>
+    </tbody>
+  </table>
+  <p>While a field has the cursor, the yellow <strong>Notes</strong> box under the form shows the related formula
+    (for example axial pitch = 1 ÷ threads per inch).</p>
+
+  <h3>Results table, items 1–13 <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20do%20items%201%20to%2013%20in%20the%20results%20table%20mean%2C%20especially%20contributing%20backlash%20and%20pre-plate%20measurement%20over%20wires%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>Results update as you type once the required fields are valid; <strong>Calculate</strong> also shows any input errors.</p>
+  <ol class="items">
+    <li><strong>Axial pitch</strong>: as entered.</li>
+    <li><strong>Number of starts</strong>: "(single)" is shown for one start.</li>
+    <li><strong>Lead</strong>: starts × axial pitch.</li>
+    <li><strong>Lead angle at pitch dia.</strong>: decimal degrees and degrees/minutes.</li>
+    <li><strong>Normal pressure angle</strong>: as entered.</li>
+    <li><strong>Axial pressure angle</strong>: from tan(axial PA) = tan(normal PA) ÷ cos(lead angle).</li>
+    <li><strong>Pitch diameter</strong>: lead ÷ (π × tan lead angle).</li>
+    <li><strong>Axial tooth thickness</strong>: as entered, or half the axial pitch.</li>
+    <li><strong>Contributing backlash</strong>: half the axial pitch minus the axial tooth thickness. It is negative for a tooth thicker than half the pitch.</li>
+    <li><strong>Measurement over wires</strong>: the size over three wires (highlighted).</li>
+    <li><strong>Pre-plate meas. over wires</strong>: min. / max. plating results, or "No plating specified". The plating allowances are shown on the line below.</li>
+    <li><strong>Wire diameter used</strong>.</li>
+    <li><strong>Best size wire</strong>: 0.5 × axial pitch × cos(lead angle) ÷ cos(normal PA).</li>
+  </ol>
+  <p>Measurements over wires are shown to 4 decimals, the same precision the original program displayed.</p>
+
+  <h3>Additional data <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20are%20the%20values%20in%20the%20Additional%20data%20table%2C%20such%20as%20base%20diameter%2C%20base%20lead%20angle%20and%20wire-center%20diameter%2C%20used%20for%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>Extra values the original program did not show: threads per inch (inch units only), normal tooth thickness, wire-center
+    diameter (M.O.W. − wire), base diameter and base lead angle of the involute helicoid, transverse pressure angle, the equivalent
+    pitch diameter used for thinning and, with plating, the plating converted to axial thinning.</p>
+
+  <h3>Conversion helpers <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20how%20do%20I%20use%20the%20conversion%20helpers%20to%20get%20axial%20pitch%20from%20TPI%2C%20lead%20and%20starts%2C%20or%20module%2C%20and%20lead%20angle%20from%20pitch%20diameter%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>Each helper shows its result as you type. <strong>Use</strong> copies that result into the matching form field.</p>
+  <ul>
+    <li><strong>Axial pitch from threads per inch</strong>: P = 1 ÷ TPI.</li>
+    <li><strong>Axial pitch from lead &amp; starts</strong>: P = lead ÷ starts.</li>
+    <li><strong>Axial pitch from module (metric)</strong>: P = π × axial module.</li>
+    <li><strong>Lead angle from pitch diameter</strong>: uses the axial pitch and starts already in the form.</li>
+    <li><strong>Normal PA from axial PA</strong>: uses the lead angle already in the form.</li>
+    <li><strong>Axial thickness from normal thickness</strong>: axial = normal ÷ cos(lead angle), using the form's lead angle.</li>
+  </ul>
+  <p class="muted">There is no DP helper. For a DP worm, type π ÷ DP (for 5 DP, 0.62832) as the axial pitch.</p>
+
+  <h3>Buttons and keyboard <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20do%20the%20Print%20report%2C%20Copy%20link%2C%20Help%2C%20Clear%20and%20Load%20example%20buttons%20do%2C%20and%20how%20does%20the%20Enter%20key%20work%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ul>
+    <li><strong>Print report</strong> (header): checks the inputs, then opens your browser's print dialog with a one-page report
+      including the job information. If an input is wrong it shows "Fix the inputs before printing" instead. Ctrl+P also prints.</li>
+    <li><strong>Copy link</strong> (header): copies a link containing the eight inputs and the units (not the job information) and
+      puts it in the address bar. It shows "Link copied", or "Link is in the address bar" if the browser blocks copying.</li>
+    <li><strong>Help</strong> (header): opens Grok in a new tab with a fixed question about the app. The <strong>Help guide</strong> links
+      in the About section and the footer open this page.</li>
+    <li><strong>Calculate</strong>: calculates and shows any input errors.</li>
+    <li><strong>Clear</strong>: empties the form (pressure angle back to 20, starts back to 1) and the results.</li>
+    <li><strong>Load example</strong>: fills in a sample 2-start worm with plating (0.5 pitch, 14.5°, 10°, 0.24 thickness, 0.25 wire,
+      0.001 / 0.002 plating) and calculates it.</li>
+    <li><strong>Enter</strong> moves to the next field, like the old DOS program. Enter in the last field (max. plating) calculates.</li>
+    <li>Your last inputs and job information are remembered in this browser (local storage) and come back next time you open the app.</li>
+  </ul>
+</section>
+
+<section class="card" id="tasks">
+  <div class="card-head"><h2>3. Common tasks, step by step</h2><a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20are%20the%20usual%20step-by-step%20workflows%20for%20checking%20a%20worm%20thread%20size%20over%20wires%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></div>
+
+  <div class="step"><h3>A. Basic measurement over wires for a worm <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20how%20do%20I%20get%20the%20basic%20measurement%20over%20wires%20for%20a%20worm%2C%20step%20by%20step%2C%20using%20the%205%20DP%20single%20start%2014.5%20degree%202.000%20inch%20pitch%20diameter%20example%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>Worked example: <strong>5 DP, single start, 14.5° normal PA, 2.000" pitch diameter</strong>.</p>
+  <ol>
+    <li>Axial pitch = π ÷ 5 = <code>0.62832</code>. Type it in field 1.</li>
+    <li>Field 2: <code>14.5</code>. Field 3: <code>1</code>.</li>
+    <li>Lead angle: tan λ = 0.62832 ÷ (π × 2.000) = 0.1, so λ = <code>5.71059</code>° (5° 42′ 38″). Type it in field 4, or use the
+      "Lead angle from pitch diameter" helper (Section C).</li>
+    <li>Leave field 5 blank for standard thickness (0.31416", half the pitch).</li>
+    <li>Leave field 6 blank to use the best-size wire (0.32289", shown as 0.3229).</li>
+    <li>Read item 7, <strong>pitch diameter 2.0000</strong>, and item 10, <strong>measurement over wires 2.4035"</strong>.</li>
+  </ol>
+  <p class="muted">Checked with the app's engine: 2.4035" over 0.3229" (best-size) wires. If you type the wire as 0.3229 instead of leaving it blank,
+    the result is 2.4036", because the extra decimal places of the best wire matter in the last digit.</p></div>
+
+  <div class="step"><h3>B. Using the best-size wire, or your own wires <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20is%20the%20best-size%20wire%20for%20a%20worm%2C%20and%20what%20should%20I%20do%20if%20my%20wire%20set%20does%20not%20have%20that%20exact%20size%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ol>
+    <li>Fill in fields 1–4. The hint under field 6 shows "approx. best-size wire = …".</li>
+    <li>Leave field 6 blank to use it, or press <strong>Best</strong> to copy it into the box.</li>
+    <li>If your wire set has a nearby size, type the actual diameter of the wires you will use. The M.O.W. changes with the wire, so always enter
+      the real wire size. Item 12 shows the wire used and item 13 the best size.</li>
+    <li>If the wire is more than 25% away from the best size, a warning appears. Make sure the wire touches the flanks, not the root or the crest.</li>
+  </ol></div>
+
+  <div class="step"><h3>C. Converting TPI, lead and starts, module, or pitch diameter <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20how%20do%20I%20convert%20threads%20per%20inch%2C%20lead%20and%20starts%2C%20module%2C%20or%20pitch%20diameter%20into%20the%20axial%20pitch%20and%20lead%20angle%20the%20app%20needs%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ol>
+    <li><strong>TPI</strong>: type it in "Axial pitch from threads per inch" and press Use (P = 1 ÷ TPI).</li>
+    <li><strong>Lead and starts</strong>: type both in "Axial pitch from lead &amp; starts" and press Use (P = lead ÷ starts). Put the starts in field 3 too.</li>
+    <li><strong>Module</strong>: type the axial module in "Axial pitch from module" and press Use (P = π × module). Set Units to mm.</li>
+    <li><strong>DP</strong>: no helper; type π ÷ DP yourself (e.g. 0.62832 for 5 DP).</li>
+    <li><strong>Pitch diameter → lead angle</strong>: with the axial pitch and starts already in the form, type the pitch diameter in
+      "Lead angle from pitch diameter" and press Use. For the 5 DP / 2.000" example this gives 5.71061, which is in the 5th decimal
+      because the pitch was entered as 0.62832. The M.O.W. is still 2.4035.</li>
+    <li><strong>Axial PA on the print</strong>: use "Normal PA from axial PA" (needs the lead angle in the form) and press Use.</li>
+    <li><strong>Normal tooth thickness on the print</strong>: use "Axial thickness from normal thickness" and press Use.</li>
+  </ol></div>
+
+  <div class="step"><h3>D. Plating allowance for pre-plate M.O.W. <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20how%20do%20I%20enter%20a%20plating%20allowance%20to%20get%20the%20pre-plate%20measurement%20over%20wires%2C%20and%20what%20does%20the%20min%20and%20max%20plating%20mean%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ol>
+    <li>Enter the worm as in A.</li>
+    <li>Field 7: the <strong>minimum</strong> plating thickness per surface (for example <code>0.0003</code>).</li>
+    <li>Field 8: the <strong>maximum</strong> plating thickness, or leave it blank to use the min.</li>
+    <li>Item 11 shows the pre-plate M.O.W. for min. / max. plating. Machine to these sizes before plating; the min. plating gives the larger size.
+      For the 5 DP example with 0.0003" plating: 2.4011".</li>
+  </ol>
+  <p class="muted">The plating is converted to axial thinning, 2 × plating ÷ (cos normal PA × cos lead angle), and applied as a smaller pitch diameter.
+    Additional data shows the converted thinning.</p></div>
+
+  <div class="step"><h3>E. Printing a report with job information <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20how%20do%20I%20print%20a%20one-page%20report%20with%20the%20customer%2C%20job%20number%20and%20part%20number%20filled%20in%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ol>
+    <li>Calculate the worm.</li>
+    <li>Open <strong>Job information for the printed report</strong> under the form and fill in Customer, Job / W.O. no., Part / worm no.,
+      Prepared by and Notes as needed.</li>
+    <li>Press <strong>Print report</strong> (or Ctrl+P). The printout has the Ram-Gear header, the job table, the date and units, results 1–13,
+      Additional data, the method note and a "Checked by / Date" line. The input form, helpers and this guide are not printed.</li>
+    <li>To save a PDF, choose "Save as PDF" (or "Microsoft Print to PDF") as the printer.</li>
+  </ol></div>
+
+  <div class="step"><h3>F. Sharing a link <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20how%20do%20I%20share%20a%20calculation%20with%20someone%20using%20Copy%20link%2C%20and%20what%20does%20the%20link%20contain%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ol>
+    <li>Enter the worm data.</li>
+    <li>Press <strong>Copy link</strong> and paste the link into an email or chat.</li>
+    <li>Opening the link fills in the same eight inputs and units. Job information is not included, so add it again if you need to print.</li>
+  </ol></div>
+</section>
+
+<section class="card" id="practice">
+  <div class="card-head"><h2>4. Practice: try it yourself</h2><a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20can%20you%20give%20me%20practice%20problems%20on%20axial%20pitch%20from%20DP%2C%20lead%20angle%2C%20best-size%20wire%20and%20measurement%20over%20wires%20for%20worm%20threads%2C%20and%20explain%20the%20common%20mistakes%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></div>
+  <p>Each box describes its worm in full and starts with the 5 DP, single start, 14.5°, 2.000" pitch diameter worm. Work out the answer (by hand or in the app), type it, and press
+    <strong>Check</strong>. <strong>New numbers</strong> makes up a different worm. Answers are checked with the app's own engine, entirely in your browser.</p>
+  <div class="tryit" data-ex="pitch">
+  <div class="tryhead"><span class="tag tag-new">Try it</span> <strong>Axial pitch from DP</strong></div>
+  <p class="tq"></p>
+  <div class="trow"><input inputmode="decimal" aria-label="Your answer for: Axial pitch from DP" placeholder="your answer"><span class="tunit"></span>
+    <button type="button" class="btn btn-primary btn-small tcheck">Check</button>
+    <button type="button" class="btn btn-small tnew" title="Make up a different worm">New numbers</button>
+    <button type="button" class="btn btn-ghost btn-small treset" title="Back to the 5 DP example">5 DP example</button>
+    <span class="muted">tolerance <span class="ttol"></span></span></div>
+  <div class="tresult" aria-live="polite"></div>
+</div>
+  <div class="tryit" data-ex="lead">
+  <div class="tryhead"><span class="tag tag-new">Try it</span> <strong>Lead angle from pitch diameter</strong></div>
+  <p class="tq"></p>
+  <div class="trow"><input inputmode="decimal" aria-label="Your answer for: Lead angle from pitch diameter" placeholder="your answer"><span class="tunit"></span>
+    <button type="button" class="btn btn-primary btn-small tcheck">Check</button>
+    <button type="button" class="btn btn-small tnew" title="Make up a different worm">New numbers</button>
+    <button type="button" class="btn btn-ghost btn-small treset" title="Back to the 5 DP example">5 DP example</button>
+    <span class="muted">tolerance <span class="ttol"></span></span></div>
+  <div class="tresult" aria-live="polite"></div>
+</div>
+  <div class="tryit" data-ex="wire">
+  <div class="tryhead"><span class="tag tag-new">Try it</span> <strong>Best-size wire</strong></div>
+  <p class="tq"></p>
+  <div class="trow"><input inputmode="decimal" aria-label="Your answer for: Best-size wire" placeholder="your answer"><span class="tunit"></span>
+    <button type="button" class="btn btn-primary btn-small tcheck">Check</button>
+    <button type="button" class="btn btn-small tnew" title="Make up a different worm">New numbers</button>
+    <button type="button" class="btn btn-ghost btn-small treset" title="Back to the 5 DP example">5 DP example</button>
+    <span class="muted">tolerance <span class="ttol"></span></span></div>
+  <div class="tresult" aria-live="polite"></div>
+</div>
+  <div class="tryit" data-ex="mow">
+  <div class="tryhead"><span class="tag tag-new">Try it</span> <strong>Measurement over wires</strong></div>
+  <p class="tq"></p>
+  <div class="trow"><input inputmode="decimal" aria-label="Your answer for: Measurement over wires" placeholder="your answer"><span class="tunit"></span>
+    <button type="button" class="btn btn-primary btn-small tcheck">Check</button>
+    <button type="button" class="btn btn-small tnew" title="Make up a different worm">New numbers</button>
+    <button type="button" class="btn btn-ghost btn-small treset" title="Back to the 5 DP example">5 DP example</button>
+    <span class="muted">tolerance <span class="ttol"></span></span></div>
+  <div class="tresult" aria-live="polite"></div>
+</div>
+  <div class="tryit" data-ex="pre">
+  <div class="tryhead"><span class="tag tag-new">Try it</span> <strong>Pre-plate measurement over wires</strong></div>
+  <p class="tq"></p>
+  <div class="trow"><input inputmode="decimal" aria-label="Your answer for: Pre-plate measurement over wires" placeholder="your answer"><span class="tunit"></span>
+    <button type="button" class="btn btn-primary btn-small tcheck">Check</button>
+    <button type="button" class="btn btn-small tnew" title="Make up a different worm">New numbers</button>
+    <button type="button" class="btn btn-ghost btn-small treset" title="Back to the 5 DP example">5 DP example</button>
+    <span class="muted">tolerance <span class="ttol"></span></span></div>
+  <div class="tresult" aria-live="polite"></div>
+</div>
+  <div class="tryit" data-ex="npa">
+  <div class="tryhead"><span class="tag tag-new">Try it</span> <strong>Normal vs. axial pressure angle</strong></div>
+  <p class="tq"></p>
+  <div class="trow"><input inputmode="decimal" aria-label="Your answer for: Normal vs. axial pressure angle" placeholder="your answer"><span class="tunit"></span>
+    <button type="button" class="btn btn-primary btn-small tcheck">Check</button>
+    <button type="button" class="btn btn-small tnew" title="Make up a different worm">New numbers</button>
+    <button type="button" class="btn btn-ghost btn-small treset" title="Back to the 5 DP example">5 DP example</button>
+    <span class="muted">tolerance <span class="ttol"></span></span></div>
+  <div class="tresult" aria-live="polite"></div>
+</div>
+</section>
+
+<section class="card" id="trouble">
+  <div class="card-head"><h2>5. Troubleshooting</h2><a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20my%20result%20looks%20wrong%20or%20I%20am%20getting%20an%20error.%20What%20should%20I%20check%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></div>
+
+  <h3>Red error messages under a field <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20do%20the%20red%20validation%20error%20messages%20mean%20and%20how%20do%20I%20fix%20them%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>When a field is wrong it turns red, "Please correct the highlighted entries." appears above the results, and one of these messages is shown:</p>
+  <ul>
+    <li>"Axial pitch must be a positive number."</li>
+    <li>"Normal pressure angle must be between 0 and 45 degrees."</li>
+    <li>"Number of starts must be a whole number of 1 or more."</li>
+    <li>"Lead angle must be between 0 and 60 degrees." (also shown if the angle can't be read; use decimals or "deg min sec" with spaces)</li>
+    <li>"Axial tooth thickness must be a positive number." / "Axial tooth thickness must be less than the axial pitch."</li>
+    <li>"Wire diameter must be a positive number."</li>
+    <li>"Plating allowance must be zero or a positive number."</li>
+    <li>"Max. plating allowance must not be less than the min."</li>
+    <li>"Enter a min. plating allowance (the original only asks for max. after a min. is given)."</li>
+    <li>"No solution for these inputs (the wire cannot seat on the thread flanks). Check the wire diameter and tooth thickness."</li>
+  </ul>
+
+  <h3>Yellow warnings <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20do%20the%20yellow%20warnings%20about%20lead%20angle%2C%20tooth%20thickness%2C%20wire%20size%20and%20plating%20mean%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>Warnings still give a result but ask you to double-check:</p>
+  <ul>
+    <li>"Lead angle above 25°: wire measurement of steep worms is sensitive; consider ball/pin measurement."</li>
+    <li>"Axial tooth thickness is far from half the axial pitch - check the entry." (shown below 30% or above 70% of the pitch)</li>
+    <li>"Wire diameter differs from the best-size wire (…) by more than 25% - make sure the wire contacts the flanks, not the root or crest."</li>
+    <li>"Plating allowance is large relative to the pitch. …" (shown at 3% of the pitch or more; the old DOS program refused such values)</li>
+  </ul>
+
+  <h3>The answer is way off <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20my%20measurement%20over%20wires%20is%20way%20off%20from%20the%20print.%20What%20are%20the%20common%20input%20mistakes%20such%20as%20DP%20versus%20axial%20pitch%2C%20or%20normal%20versus%20axial%20pressure%20angle%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ul>
+    <li><strong>DP typed as the pitch</strong>: field 1 is the axial pitch, π ÷ DP, not the DP.</li>
+    <li><strong>Normal vs. axial pressure angle</strong>: field 2 is the normal angle. Convert an axial angle with the helper.</li>
+    <li><strong>Starts</strong>: for multi-start worms, set field 3 and remember that lead = starts × pitch.</li>
+    <li><strong>Minutes typed as decimals</strong>: 5° 30′ is <code>5.5</code> or <code>5 30</code>, not 5.30.</li>
+    <li><strong>Wrong units</strong>: the Units box does not convert numbers. If the print is metric, set mm and enter every length in mm;
+      do not mix inches and millimetres.</li>
+    <li><strong>Normal tooth thickness</strong> typed into field 5: convert it to axial with the helper.</li>
+  </ul>
+
+  <h3>Thin or thick tooth <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20how%20does%20the%20app%20handle%20a%20tooth%20thinner%20or%20thicker%20than%20half%20the%20pitch%2C%20and%20what%20is%20contributing%20backlash%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>A tooth thinner than half the axial pitch gives a positive <em>contributing backlash</em> (item 9) and a smaller M.O.W.; a thicker tooth gives a
+    negative value and a larger M.O.W. The app applies it the same way the original did, by reducing the pitch diameter by backlash × cot(axial PA).
+    Below 30% or above 70% of the pitch you get a warning, which usually means a typing mistake.</p>
+
+  <h3>The page looks old or does not change <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20the%20page%20looks%20outdated%20after%20an%20update.%20How%20do%20I%20do%20a%20hard%20refresh%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>Do a hard refresh: <strong>Ctrl+F5</strong> or <strong>Ctrl+Shift+R</strong> (Windows/Linux), <strong>Cmd+Shift+R</strong> (Mac). On a phone, close and reopen the tab.
+    Old inputs come back from browser storage; press Clear to start fresh.</p>
+
+  <h3>Printing tips <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20how%20do%20I%20get%20a%20clean%20one-page%20printout%20or%20PDF%20of%20the%20report%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ul>
+    <li>Use Print report so the inputs are checked first.</li>
+    <li>Letter paper, portrait, scale 100% ("Default"). Turn off the browser's own headers/footers if you don't want the URL printed.</li>
+    <li>Turn on "Background graphics" if you want the shaded rows.</li>
+    <li>Choose "Save as PDF" to keep an electronic copy.</li>
+  </ul>
+
+  <h3>Assumptions and limits <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20are%20the%20assumptions%20and%20limits%20of%20the%20measurement%20over%20wires%20calculation%2C%20such%20as%20involute%20helicoid%20ZI%20worms%20versus%20ZA%20or%20ZN%20worms%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <ul>
+    <li><strong>Involute-helicoid (ZI) worms</strong> measured over three equal wires. Straight-sided axial (ZA) or normal (ZN) worms differ slightly,
+      more so at larger lead angles.</li>
+    <li>The wires must touch the thread flanks. The app does not check against the outside or root diameter.</li>
+    <li>Results agree with the old DOS program to its displayed 4 decimals. Always confirm critical dimensions with an independent check before cutting.</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <span>Ram-Gear Manufacturing Inc. · RG Worm MOW v<span id="ver"></span> · <a href="index.html">Back to the app</a></span>
+  <span>Always confirm critical dimensions against an independent check before cutting.</span>
+</footer>
+<script src="js/rgworm-engine.js"></script>
+<script src="js/help.js"></script>
+</body>
+</html>
