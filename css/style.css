@@ -106,7 +106,7 @@ table.results{width:100%;border-collapse:collapse}
   .jobtable td{padding:.15rem .3rem;border:1px solid #999}
   .jobtable td.k{font-weight:600;width:16%;background:#f2f2f2}
   .results th,.results td{border-bottom:1px solid #999;padding:.2rem .45rem}
-  .results.small td{padding:.12rem .45rem;font-size:9pt}
+  .results.small td{padding:.06rem .45rem;font-size:9pt}
   .sec{margin:.6rem 0 .2rem}
   .method{margin-top:.5rem;font-size:8pt}
   .results tr.key td{background:#eee;color:#000}
@@ -115,7 +115,7 @@ table.results{width:100%;border-collapse:collapse}
   .card-head{border-bottom-color:#000}
   .card-head{border-bottom:1px solid #000}
   .tag-new{border:1px solid #999;background:#fff;color:#333}
-  .sig{margin-top:1rem}
+  .sig{margin-top:.5rem}
   .card-head{margin-bottom:.3rem}
   .print-brand{margin-bottom:.3rem}
   .msg{border:1px solid #999;background:#fff;color:#000}
@@ -146,3 +146,11 @@ a.btn{text-decoration:none;display:inline-block}
 .tresult.good{background:#eaf6ee;border:1px solid #a9d6b5;color:var(--ok);padding:.45rem .7rem}
 .tresult.bad{background:#fdecec;border:1px solid #f0b4b4;color:var(--err);padding:.45rem .7rem}
 .helplink a,.site-footer a,.toc a{color:var(--brand-dark)}
+.results tr.added td{background:#fafcfd}
+.results .adnote{font-weight:400;color:var(--muted);font-size:.78rem}
+@media print{
+  .results th,.results td,.results td.idx,.results td.num{color:#000}
+  .results th,.results td{padding:.14rem .45rem}
+  .results .adnote,.results .unit,.results .dm{color:#333}
+  .results tr.added td{background:#fff}
+}

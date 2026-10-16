@@ -31,6 +31,12 @@ normal and axial pressure angle, pitch diameter, axial tooth thickness, contribu
 best-size wire. A second table ("Additional data") shows values the original did not display
 (base diameter, base lead angle, wire-center diameter, and so on). It is labelled as such.
 
+**Added: worm outside diameter (OD).** The original had no addendum input. RG Worm MOW adds an optional **Addendum** field
+(between tooth thickness and wire diameter). Leave it blank for the standard worm addendum **0.3183 × axial pitch** (= 1/DP). The results then
+show **Worm outside diameter (OD) = pitch diameter + 2 × addendum** right after the pitch diameter. This line is tagged *added* and unnumbered,
+so the original's 13 items keep their numbers, and a note says whether the default or an entered addendum was used.
+It appears in the printed report and in Copy link state; it does not affect the M.O.W. Example: 5 DP, 2.000" PD → addendum 0.2000", OD 2.4000".
+
 Other features: input validation, context notes for each field (the original had these too), conversion helpers
 (TPI, lead, module, PD to lead angle, axial to normal PA, normal to axial thickness) in place of the original program's RPN calculator,
 optional job information, a printable one-page report (**Print report** or Ctrl+P), a shareable link with the
@@ -77,6 +83,7 @@ js/rgworm-engine.js      calculation engine (pure functions, also loadable in No
 js/app.js                user interface
 tests/reference-cases.json  outputs recorded from the original program (QWORM.EXE)
 tests/run-tests.js       engine-vs-original regression test (Node)
+tests/od-tests.js        tests for the added outside diameter / addendum
 ```
 
 ## Deploying to GitHub Pages (when ready)
@@ -101,6 +108,7 @@ Note that a GitHub Pages site is **public** even if the repository is private (p
 ```
 python3 -m http.server 8000      # then open http://localhost:8000/
 node tests/run-tests.js          # numeric regression against the original
+node tests/od-tests.js           # added outside-diameter (addendum) checks
 ```
 
 ## Caveats

@@ -3,7 +3,7 @@
   'use strict';
   var Q = window.RGWormMOW;
   var $ = function (id) { return document.getElementById(id); };
-  var FIELDS = ['P', 'An', 'N', 'lam', 'ta', 'W', 'platMin', 'platMax'];
+  var FIELDS = ['P', 'An', 'N', 'lam', 'ta', 'ad', 'W', 'platMin', 'platMax'];
   var JOB = ['jobCustomer', 'jobNo', 'jobPart', 'jobBy', 'jobNotes'];
   var STORE = 'ramgear.rgwormmow.v1';
   var OLD_STORE = 'ramgear.qworm.v1'; // pre-rename key, read once for continuity
@@ -15,6 +15,7 @@
     pa: '<p>Normal pressure angle: one half of the included thread angle, measured in the normal plane. Default 20°.</p><p>If the axial PA is given:<br><code>tan(normal PA) = tan(axial PA) × cos(lead angle)</code></p>',
     starts: '<p>Number of thread starts. Default is one (single).</p>',
     lead: '<p>Lead angle of the worm at the pitch diameter, in decimal degrees (or degrees minutes seconds, e.g. <code>5 42 38</code>).</p><p><code>tan(lead angle) = lead ÷ (π × pitch dia.)</code></p>',
+    ad: '<p><strong>Added (not in the original program).</strong> Worm addendum, used only for the outside diameter: OD = pitch dia. + 2 \u00d7 addendum.</p><p>Leave blank for the standard worm addendum 0.3183 \u00d7 axial pitch (= 1 \u00f7 DP). Enter the actual addendum for nonstandard worms.</p>',
     tt: '<p>Axial tooth (thread) thickness at the pitch diameter. Default is ½ the axial pitch (zero backlash).</p><p>If the normal thickness is given:<br><code>axial = normal ÷ cos(lead angle)</code></p>',
     wire: '<p>Diameter of the measuring wires you will use. The approximate best-size wire is</p><p><code>W = T × cos B ÷ cos An</code><br>T = ½ axial pitch, B = lead angle at pitch dia., An = normal PA.</p>',
     plmin: '<p>Minimum plating allowance (plating thickness per surface) for pre-plate measurement over wires. Leave blank if there is no plating.</p>',
@@ -37,7 +38,7 @@
     return {
       P: val('P'), An: val('An') === '' ? '20' : val('An'), N: val('N') === '' ? '1' : val('N'),
       lamDeg: lamStr === '' ? '' : String(Q.parseAngle(lamStr)),
-      ta: val('ta'), W: val('W'), platMin: val('platMin'), platMax: val('platMax')
+      ta: val('ta'), ad: val('ad'), W: val('W'), platMin: val('platMin'), platMax: val('platMax')
     };
   }
 
@@ -51,6 +52,7 @@
     var lam = +inp.lamDeg, P = +inp.P, An = +inp.An;
     $('hint-lam').textContent = (val('lam') !== '' && isFinite(lam) && lam > 0) ? '= ' + lam.toFixed(5) + '°  (' + Q.toDMS(lam) + ')' : '';
     $('hint-ta').textContent = (P > 0 && val('ta') === '') ? 'will use ' + (P / 2).toFixed(5) : '';
+    $('hint-ad').textContent = (P > 0 && val('ad') === '') ? 'will use 0.3183 \u00d7 P = ' + (Q.ADDENDUM_FACTOR * P).toFixed(5) : '';
     if (P > 0 && lam > 0 && lam < 90 && An > 0 && An < 90) {
       var bw = 0.5 * P * Math.cos(lam * Math.PI / 180) / Math.cos(An * Math.PI / 180);
       $('hint-W').textContent = 'approx. best-size wire = ' + bw.toFixed(5) + (val('W') === '' ? '  (will be used)' : '');
@@ -105,6 +107,7 @@
     h += row('5.', 'Normal pressure angle', fmt(i.An, 5), '°', '', '(' + Q.toDM(i.An) + ')');
     h += row('6.', 'Axial pressure angle', fmt(r.axialPA, 5), '°', '', '(' + Q.toDM(r.axialPA) + ')');
     h += row('7.', 'Pitch diameter', fmt(r.pitchDiameter, 4), u);
+    h += row('', 'Worm outside diameter (OD) <span class="tag tag-new">added</span><br><small class="adnote">PD + 2 \u00d7 addendum ' + fmt(r.addendum, 4) + ' ' + u + (r.addendumIsDefault ? ' (default 0.3183 \u00d7 P)' : ' (entered)') + '</small>', fmt(r.outsideDiameter, 4), u, 'added');
     h += row('8.', 'Axial tooth thickness', fmt(i.ta, 5), u);
     h += row('9.', 'Contributing backlash', fmt(r.backlash, 5), u);
     h += row('10.', 'Measurement over wires', fmt(r.mow, 4), u, 'key');
@@ -215,7 +218,7 @@
       history.replaceState(null, '', location.href.split('#')[0]);
     });
     $('btnExample').addEventListener('click', function () {
-      setState({ P: '0.5', An: '14.5', N: '2', lam: '10', ta: '0.24', W: '0.25', platMin: '0.001', platMax: '0.002' });
+      setState({ P: '0.5', An: '14.5', N: '2', lam: '10', ta: '0.24', ad: '', W: '0.25', platMin: '0.001', platMax: '0.002' });
       updateHints(); calculate();
     });
     $('btnPrint').addEventListener('click', function () {

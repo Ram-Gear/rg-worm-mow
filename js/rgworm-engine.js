@@ -24,6 +24,7 @@
 
   var PI = Math.PI;
   var D2R = PI / 180;
+  var ADDENDUM_FACTOR = 0.3183; // standard worm addendum = 0.3183 x axial pitch (= 1/DP when P = pi/DP)
 
   function inv(x) { return Math.tan(x) - x; }
 
@@ -85,6 +86,9 @@
     var phiA = Math.atan(Math.tan(An) / Math.cos(lam));     // axial PA
     var bestWire = 0.5 * P * Math.cos(lam) / Math.cos(An);  // from original help text
     var ta = (p.ta === undefined || p.ta === null || p.ta === '') ? P / 2 : +p.ta;
+    // Added (not in original QWORM): worm outside diameter from addendum; default standard 0.3183 x P (= 1/DP)
+    var adDefault = (p.ad === undefined || p.ad === null || p.ad === '');
+    var ad = adDefault ? ADDENDUM_FACTOR * P : +p.ad;
     var W = (p.W === undefined || p.W === null || p.W === '') ? bestWire : +p.W;
     var B = P / 2 - ta;                                     // contributing backlash
 
@@ -121,6 +125,9 @@
       lead: L,
       tpi: 1 / P,
       pitchDiameter: E,
+      addendum: ad,
+      addendumIsDefault: adDefault,
+      outsideDiameter: E + 2 * ad,
       axialPA: phiA / D2R,
       bestWire: bestWire,
       backlash: B,
@@ -150,6 +157,7 @@
       else if (num(p.P) && +p.ta >= +p.P) e.push(['ta', 'Axial tooth thickness must be less than the axial pitch.']);
     }
     if (p.W !== '' && p.W != null && (!num(p.W) || +p.W <= 0)) e.push(['W', 'Wire diameter must be a positive number.']);
+    if (p.ad !== '' && p.ad != null && (!num(p.ad) || +p.ad <= 0)) e.push(['ad', 'Addendum must be a positive number.']);
     if (p.platMin !== '' && p.platMin != null && (!num(p.platMin) || +p.platMin < 0)) e.push(['platMin', 'Plating allowance must be zero or a positive number.']);
     if (p.platMax !== '' && p.platMax != null) {
       if (!num(p.platMax) || +p.platMax < 0) e.push(['platMax', 'Plating allowance must be zero or a positive number.']);
@@ -206,7 +214,7 @@
     axialFromNormalThickness: function (tn, lamDeg) { return tn / Math.cos(lamDeg * D2R); }
   };
 
-  var api = { compute: compute, validate: validate, toDM: toDM, toDMS: toDMS, parseAngle: parseAngle, helpers: helpers, inv: inv, invInverse: invInverse, version: '1.0.0' };
+  var api = { ADDENDUM_FACTOR: ADDENDUM_FACTOR, compute: compute, validate: validate, toDM: toDM, toDMS: toDMS, parseAngle: parseAngle, helpers: helpers, inv: inv, invInverse: invInverse, version: '1.0.0' };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.RGWormMOW = api;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -56,7 +56,7 @@
 <section class="card" id="screen">
   <div class="card-head"><h2>2. The screen, part by part</h2><a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20can%20you%20walk%20me%20through%20the%20parts%20of%20the%20screen%3A%20the%20input%20fields%2C%20the%20results%20table%2C%20additional%20data%2C%20and%20the%20conversion%20helpers%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></div>
 
-  <h3>Worm data (inputs) <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20does%20each%20of%20the%20eight%20input%20fields%20mean%2C%20and%20what%20units%20do%20they%20use%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <h3>Worm data (inputs) <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20does%20each%20of%20the%20input%20fields%2C%20including%20the%20optional%20addendum%2C%20mean%2C%20and%20what%20units%20do%20they%20use%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
   <p>Enter the fields in order. The <strong>Units</strong> box (inch / mm) only changes the labels; the math works the same in either unit,
     so enter every length in the unit you picked. Angles are always degrees.</p>
   <table class="results helptable">
@@ -67,6 +67,7 @@
       <tr><td>3. Number of starts</td><td>–</td><td>Number of thread starts (whole number, default 1).</td></tr>
       <tr><td>4. Worm lead angle</td><td>deg</td><td>Lead angle at the pitch diameter. Type decimal degrees (5.71059) or degrees minutes seconds separated by spaces (5 42 38). The value is echoed under the box in both forms. Must be between 0 and 60. Required.</td></tr>
       <tr><td>5. Axial tooth thickness</td><td>in / mm</td><td>Thread thickness at the pitch diameter, measured along the axis. Leave blank for half the axial pitch (zero backlash); the hint shows "will use …". Must be less than the axial pitch.</td></tr>
+      <tr><td>Addendum <span class="tag tag-new">added</span></td><td>in / mm</td><td>Optional; not in the original program. Worm addendum, used only for the outside diameter (OD). Leave blank for the standard worm addendum 0.3183 × axial pitch (= 1 ÷ DP); the hint shows "will use 0.3183 × P = …". Enter the actual addendum for a nonstandard worm. Must be a positive number.</td></tr>
       <tr><td>6. Wire diameter</td><td>in / mm</td><td>Diameter of the three measuring wires. The hint shows the approximate best-size wire. Leave blank to use it, or press <strong>Best</strong> to copy it into the box.</td></tr>
       <tr><td>7. Min. plating allowance</td><td>in / mm</td><td>Plating thickness per surface, for the pre-plate measurement. Leave blank if the part is not plated.</td></tr>
       <tr><td>8. Max. plating allowance</td><td>in / mm</td><td>Upper plating limit. If blank, the min. value is used. It must not be less than the min., and it needs a min. to be entered.</td></tr>
@@ -84,7 +85,9 @@
     <li><strong>Lead angle at pitch dia.</strong>: decimal degrees and degrees/minutes.</li>
     <li><strong>Normal pressure angle</strong>: as entered.</li>
     <li><strong>Axial pressure angle</strong>: from tan(axial PA) = tan(normal PA) ÷ cos(lead angle).</li>
-    <li><strong>Pitch diameter</strong>: lead ÷ (π × tan lead angle).</li>
+    <li><strong>Pitch diameter</strong>: lead ÷ (π × tan lead angle).
+      <br>Right after it: <strong>Worm outside diameter (OD)</strong>, tagged <span class="tag tag-new">added</span> and unnumbered because the original program did not have it.
+      OD = pitch diameter + 2 × addendum. A small note under it shows the addendum used and whether it is the default (0.3183 × P) or entered.</li>
     <li><strong>Axial tooth thickness</strong>: as entered, or half the axial pitch.</li>
     <li><strong>Contributing backlash</strong>: half the axial pitch minus the axial tooth thickness. It is negative for a tooth thicker than half the pitch.</li>
     <li><strong>Measurement over wires</strong>: the size over three wires (highlighted).</li>
@@ -114,8 +117,8 @@
   <h3>Buttons and keyboard <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20what%20do%20the%20Print%20report%2C%20Copy%20link%2C%20Help%2C%20Clear%20and%20Load%20example%20buttons%20do%2C%20and%20how%20does%20the%20Enter%20key%20work%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
   <ul>
     <li><strong>Print report</strong> (header): checks the inputs, then opens your browser's print dialog with a one-page report
-      including the job information. If an input is wrong it shows "Fix the inputs before printing" instead. Ctrl+P also prints.</li>
-    <li><strong>Copy link</strong> (header): copies a link containing the eight inputs and the units (not the job information) and
+      including the job information and the OD line. If an input is wrong it shows "Fix the inputs before printing" instead. Ctrl+P also prints.</li>
+    <li><strong>Copy link</strong> (header): copies a link containing the inputs (including the addendum, if entered) and the units (not the job information) and
       puts it in the address bar. It shows "Link copied", or "Link is in the address bar" if the browser blocks copying.</li>
     <li><strong>Help</strong> (header): opens Grok in a new tab with a fixed question about the app. The <strong>Help guide</strong> links
       in the About section and the footer open this page.</li>
@@ -123,7 +126,7 @@
     <li><strong>Clear</strong>: empties the form (pressure angle back to 20, starts back to 1) and the results.</li>
     <li><strong>Load example</strong>: fills in a sample 2-start worm with plating (0.5 pitch, 14.5°, 10°, 0.24 thickness, 0.25 wire,
       0.001 / 0.002 plating) and calculates it.</li>
-    <li><strong>Enter</strong> moves to the next field, like the old DOS program. Enter in the last field (max. plating) calculates.</li>
+    <li><strong>Enter</strong> moves to the next field, like the old DOS program (the added Addendum field comes between tooth thickness and wire diameter). Enter in the last field (max. plating) calculates.</li>
     <li>Your last inputs and job information are remembered in this browser (local storage) and come back next time you open the app.</li>
   </ul>
 </section>
@@ -140,7 +143,7 @@
       "Lead angle from pitch diameter" helper (Section C).</li>
     <li>Leave field 5 blank for standard thickness (0.31416", half the pitch).</li>
     <li>Leave field 6 blank to use the best-size wire (0.32289", shown as 0.3229).</li>
-    <li>Read item 7, <strong>pitch diameter 2.0000</strong>, and item 10, <strong>measurement over wires 2.4035"</strong>.</li>
+    <li>Read item 7, <strong>pitch diameter 2.0000</strong>, the added <strong>OD 2.4000</strong> (default addendum 0.2000"), and item 10, <strong>measurement over wires 2.4035"</strong>.</li>
   </ol>
   <p class="muted">Checked with the app's engine: 2.4035" over 0.3229" (best-size) wires. If you type the wire as 0.3229 instead of leaving it blank,
     the result is 2.4036", because the extra decimal places of the best wire matter in the last digit.</p></div>
@@ -192,7 +195,7 @@
   <ol>
     <li>Enter the worm data.</li>
     <li>Press <strong>Copy link</strong> and paste the link into an email or chat.</li>
-    <li>Opening the link fills in the same eight inputs and units. Job information is not included, so add it again if you need to print.</li>
+    <li>Opening the link fills in the same inputs (including any addendum) and units. Job information is not included, so add it again if you need to print.</li>
   </ol></div>
 </section>
 
@@ -274,6 +277,7 @@
     <li>"Lead angle must be between 0 and 60 degrees." (also shown if the angle can't be read; use decimals or "deg min sec" with spaces)</li>
     <li>"Axial tooth thickness must be a positive number." / "Axial tooth thickness must be less than the axial pitch."</li>
     <li>"Wire diameter must be a positive number."</li>
+    <li>"Addendum must be a positive number." (leave it blank for the standard addendum)</li>
     <li>"Plating allowance must be zero or a positive number."</li>
     <li>"Max. plating allowance must not be less than the min."</li>
     <li>"Enter a min. plating allowance (the original only asks for max. after a min. is given)."</li>
@@ -304,6 +308,12 @@
   <p>A tooth thinner than half the axial pitch gives a positive <em>contributing backlash</em> (item 9) and a smaller M.O.W.; a thicker tooth gives a
     negative value and a larger M.O.W. The app applies it the same way the original did, by reducing the pitch diameter by backlash × cot(axial PA).
     Below 30% or above 70% of the pitch you get a warning, which usually means a typing mistake.</p>
+
+  <h3>The outside diameter (OD) does not match the print <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20the%20worm%20outside%20diameter%20shown%20by%20the%20app%20does%20not%20match%20my%20print.%20How%20is%20the%20default%20addendum%20chosen%20and%20when%20should%20I%20enter%20my%20own%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
+  <p>The OD is pitch diameter + 2 × addendum. If you leave Addendum blank, the app uses the <strong>standard worm addendum 0.3183 × axial pitch</strong>
+    (1 ÷ DP, e.g. 0.2000" for 5 DP, so a 2.000" PD worm has a 2.4000" OD). Many worms are made with a different (nonstandard, long or short) addendum.
+    In that case <strong>enter the actual addendum</strong> from the print, or half of (print OD − pitch diameter). The note under the OD line shows whether the
+    default or an entered value was used. The addendum does not change the measurement over wires.</p>
 
   <h3>The page looks old or does not change <a class="askgrok" href="https://grok.com/?q=In%20Ram-Gear%27s%20RG%20Worm%20MOW%20worm%20thread%20measurement-over-wires%20app%2C%20the%20page%20looks%20outdated%20after%20an%20update.%20How%20do%20I%20do%20a%20hard%20refresh%3F%20Please%20read%20https%3A%2F%2Fram-gear.github.io%2Frg-worm-mow%2Fhelp.html%20first." target="_blank" rel="noopener" title="Opens Grok in a new tab with a question about this section. No data from this page is sent.">Ask Grok about this ↗</a></h3>
   <p>Do a hard refresh: <strong>Ctrl+F5</strong> or <strong>Ctrl+Shift+R</strong> (Windows/Linux), <strong>Cmd+Shift+R</strong> (Mac). On a phone, close and reopen the tab.
